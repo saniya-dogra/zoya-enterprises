@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #ffffff;
+}
+
+.header input {
+  width: 40%;
+  padding: 8px;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #004aad;
+  padding: 10px;
+  text-align: center;
+}
+
+.navbar a {
+  color: white;
+  margin: 15px;
+  text-decoration: none;
+}
+
+/* BANNER */
+.banner {
+  background: lightblue;
+  text-align: center;
+  padding: 50px;
+}
+
+/* CATEGORIES */
+.categories {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+.category {
+  background: #f0f0f0;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+/* PRODUCTS */
+.products {
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  width: 200px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+}
+
+/* FOOTER */
+.footer {
+  background: #222;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+}
