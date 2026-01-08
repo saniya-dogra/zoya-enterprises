@@ -2,87 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Zoya Enterprises | Uniforms & Clothing</title>
+  <title>Zoya Enterprises | Uniforms</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo">ZOYA ENTERPRISES</div>
-    <input type="text" placeholder="Search for uniforms, clothing...">
-    <div class="icons">
-      <span>🛒</span>
-      <span>👤</span>
-    </div>
-  </header>
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">ZOYA <span>ENTERPRISES</span></div>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
+  <div class="search-box">
+    <input type="text" placeholder="Search uniforms...">
+    <i class="fa fa-search"></i>
+  </div>
+
+  <div class="icons">
+    <div class="icon" onclick="openCart()">
+      <i class="fa fa-shopping-cart"></i>
+      <span id="cart-count">0</span>
+    </div>
+    <div class="icon" onclick="login()">
+      <i class="fa fa-user"></i>
+    </div>
+  </div>
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#">Home</a>
+  <a href="#">School</a>
+  <a href="#">College</a>
+  <a href="#">Corporate</a>
+  <a href="#">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Premium Uniforms for Every Institution</h1>
+  <p>Quality • Comfort • Trust</p>
+  <button>Explore Collection</button>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <h2>Our Uniform Collection</h2>
+
+  <div class="product-grid">
+
+    <!-- CARD -->
+    <div class="card">
+      <img src="images/kids-uniform.jpg">
+      <h3>School Uniform (Kids)</h3>
+      <p>₹899</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="images/middle-uniform.jpg">
+      <h3>School Uniform (Middle)</h3>
+      <p>₹1199</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="images/high-uniform.jpg">
+      <h3>School Uniform (High)</h3>
+      <p>₹1499</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="images/college-uniform.jpg">
+      <h3>College Uniform</h3>
+      <p>₹1699</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="images/corporate.jpg">
+      <h3>Corporate Dress</h3>
+      <p>₹1999</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="images/coat-pant.jpg">
+      <h3>Coat & Pants</h3>
+      <p>₹2499</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="images/tie.jpg">
+      <h3>Tie</h3>
+      <p>₹299</p>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <h3>Zoya Enterprises</h3>
+    <p>Premium School & Corporate Uniform Manufacturer</p>
+  </div>
+
+  <div>
+    <h4>Quick Links</h4>
     <a href="#">Home</a>
     <a href="#">Uniforms</a>
-    <a href="#">Kids</a>
-    <a href="#">School</a>
-    <a href="#">College</a>
     <a href="#">Corporate</a>
     <a href="#">Contact</a>
-  </nav>
+  </div>
 
-  <!-- BANNER -->
-  <section class="banner">
-    <h1>Premium School & Corporate Uniforms</h1>
-    <p>Quality | Comfort | Trust</p>
-  </section>
-
-  <!-- CATEGORIES -->
-  <section class="categories">
-    <div class="category">Coat</div>
-    <div class="category">Pant</div>
-    <div class="category">Tie</div>
-    <div class="category">School Bag</div>
-    <div class="category">School Dress</div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section class="products">
-    <div class="product-card">
-      <img src="images/coat.jpg">
-      <h3>School Coat</h3>
-      <p>₹1999</p>
-    </div>
-
-    <div class="product-card">
-      <img src="images/pant.jpg">
-      <h3>Uniform Pant</h3>
-      <p>₹999</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div>
-      <h3>Zoya Enterprises</h3>
-      <p>Trusted Uniform Manufacturer</p>
-    </div>
-
-    <div>
-      <h4>Categories</h4>
-      <ul>
-        <li>Kids Uniform</li>
-        <li>Middle School</li>
-        <li>High School</li>
-        <li>College</li>
-        <li>Corporate</li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Contact</h4>
-      <p>📍 Srinagar, India</p>
-      <p>📞 +91 XXXXXXXX</p>
-      <p>✉️ zoyaenterprises@gmail.com</p>
-    </div>
-  </footer>
+  <div>
+    <h4>Contact</h4>
+    <p>📍 Srinagar, India</p>
+    <p>📞 +91 XXXXXXXX</p>
+    <p>✉️ zoyaenterprises@gmail.com</p>
+  </div>
+</footer>
 
 <script src="js/main.js"></script>
 </body>
