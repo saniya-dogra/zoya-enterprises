@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 /* HEADER */
@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: #fff;
+  background: white;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
@@ -25,8 +25,8 @@
 
 /* SEARCH */
 .search-box {
-  position: relative;
   width: 40%;
+  position: relative;
 }
 .search-box input {
   width: 100%;
@@ -38,7 +38,6 @@
   position: absolute;
   right: 15px;
   top: 12px;
-  color: #555;
 }
 
 /* ICONS */
@@ -64,20 +63,19 @@
 /* NAVBAR */
 .navbar {
   background: #004aad;
-  padding: 12px;
   text-align: center;
+  padding: 12px;
 }
 .navbar a {
   color: white;
   margin: 15px;
   text-decoration: none;
-  font-weight: 500;
 }
 
 /* HERO */
 .hero {
-  background: linear-gradient(to right, #a8d8ff, #dff1ff);
-  padding: 70px;
+  background: linear-gradient(120deg, #a8d8ff, #dff1ff);
+  padding: 80px;
   text-align: center;
 }
 .hero h1 {
@@ -90,7 +88,6 @@
   background: #004aad;
   color: white;
   border-radius: 25px;
-  cursor: pointer;
 }
 
 /* PRODUCTS */
@@ -99,8 +96,27 @@
 }
 .products h2 {
   text-align: center;
+  margin-bottom: 20px;
+}
+
+.category-filter {
+  text-align: center;
   margin-bottom: 30px;
 }
+.category-filter button {
+  margin: 5px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid #004aad;
+  background: white;
+  cursor: pointer;
+}
+.category-filter button.active,
+.category-filter button:hover {
+  background: #004aad;
+  color: white;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -113,23 +129,18 @@
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-.card:hover {
-  transform: translateY(-8px);
 }
 .card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border-radius: 10px;
 }
 .card button {
   margin-top: 10px;
   padding: 8px 18px;
-  border: none;
   background: #004aad;
   color: white;
+  border: none;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -141,11 +152,9 @@
   padding: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
 }
 .footer a {
-  display: block;
   color: #bbb;
   text-decoration: none;
-  margin-top: 5px;
+  display: block;
 }
