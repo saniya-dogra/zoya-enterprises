@@ -4,10 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        maroon: "#800000",
-        softwhite: "#F8F9FA",
-        charcoal: "#2E2E2E",
-      },
+    maroon: "#7B1E1E",
+    beige: "#F5EFE6",
+    softwhite: "#FAFAFA",
+    charcoal: "#2E2E2E",
+  },
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
       },
