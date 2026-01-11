@@ -19,24 +19,29 @@ function Home() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
 
           <CategoryCard
-            title="Kids & Middle School"
-            image="https://images.unsplash.com/photo-1600185365483-26d7f3c6d1b1"
-          />
+  title="Kids & Middle School"
+  image="https://images.unsplash.com/photo-1598033129183-c4f50c736f10"
+  link="/category/kids"
+/>
 
-          <CategoryCard
-            title="High School & College"
-            image="https://images.unsplash.com/photo-1593032465175-481ac7f401a0"
-          />
+<CategoryCard
+  title="High School & College"
+  image="https://images.unsplash.com/photo-1520975867597-0f47c4b9a77c"
+  link="/category/highschool"
+/>
 
-          <CategoryCard
-            title="Corporate Wear"
-            image="https://images.unsplash.com/photo-1521334884684-d80222895322"
-          />
+<CategoryCard
+  title="Corporate Wear"
+  image="https://images.unsplash.com/photo-1521334884684-d80222895322"
+  link="/category/corporate"
+/>
 
-          <CategoryCard
-            title="Accessories"
-            image="https://images.unsplash.com/photo-1598032895397-b9472444bf93"
-          />
+<CategoryCard
+  title="Accessories"
+  image="https://images.unsplash.com/photo-1618354691373-d851c5c3a990"
+  link="/category/accessories"
+/>
+
 
         </div>
       </section>
