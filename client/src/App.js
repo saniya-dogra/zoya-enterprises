@@ -1,10 +1,17 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+
 function App() {
   return (
-    <div className="bg-maroon min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-white">
-        Zoya Interprises – Tailwind Working ✅
-      </h1>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
