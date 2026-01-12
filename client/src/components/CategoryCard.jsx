@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 function CategoryCard({ title, image, link }) {
   return (
     <Link to={link}>
-      <div className="bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer">
+      {/* <div className="bg-white rounded-xl shadow hover:shadow-lg transition cursor-pointer"> */}
+      <div className="bg-white rounded-xl shadow hover:shadow-lg transition hover:-translate-y-1">
+
         <img
           src={image}
           alt={title}
