@@ -1,10 +1,15 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import products from "../data/products";
 import ProductCard from "../components/ProductCard";
 
 function Category() {
   const { category } = useParams();
   const items = products[category] || [];
+  useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
+
 
   return (
     <div className="bg-beige min-h-screen px-10 py-12">
