@@ -22,50 +22,71 @@ export default function Header() {
 
   return (
     <header className="bg-white border-b">
-      <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
+      <div className="w-full px-10 py-4 flex items-center gap-2">
 
-        {/* LOGO */}
-        <Link to="/" className="flex items-center gap-0">
-          <img src={logo} alt="Zoya Enterprises" className="h-32 w-32 object-contain" />
-
-          <div className="leading-none">
-            <span className="block text-4xl text-blue-900" style={{ fontFamily: "'Great Vibes', cursive" }}>
-              Zoya
-            </span>
-            <span className="block text-2xl text-blue-700 -mt-1" style={{ fontFamily: "'Great Vibes', cursive" }}>
-              Enterprises
-            </span>
-          </div>
+        {/* ✅ LEFT: Zoya Enterprises text (cursive, stylish) */}
+        <Link to="/" className="leading-none">
+          <span
+            className="block text-3xl text-blue-900 font-semibold"
+            style={{ fontFamily: "'Great Vibes', cursive" }}
+          >
+            Zoya
+          </span>
+          <span
+            className="block text-xl text-blue-600 -mt-1"
+            style={{ fontFamily: "'Great Vibes', cursive" }}
+          >
+            Enterprises
+          </span>
         </Link>
 
-        {/* SEARCH */}
-        <form onSubmit={handleSearch} className="flex-1 max-w-xl mx-10 relative">
+        {/* ✅ LOGO (big) */}
+        <Link to="/" className="flex items-center">
+          <img
+            src={logo}
+            alt="Zoya Logo"
+            className="h-20 w-auto object-contain"
+          />
+        </Link>
+
+        {/* ✅ SEARCH BAR (takes all remaining space) */}
+        <form
+          onSubmit={handleSearch}
+          className="flex-1 flex items-center bg-gray-100 rounded-full px-5 py-3"
+        >
+          <FiSearch className="text-gray-500 mr-3" size={18} />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for products, brands and more"
-            className="w-full border-2 border-maroon rounded-full py-3 pl-6 pr-14 focus:outline-none"
+            className="w-full bg-transparent outline-none text-sm"
           />
-          <button
-            type="submit"
-            className="absolute right-1 top-1/2 -translate-y-1/2 bg-maroon text-white p-3 rounded-full"
-          >
-            <FiSearch size={18} />
-          </button>
         </form>
 
-        {/* CART + LOGIN */}
-        <div className="flex items-center gap-6 text-maroon">
-          <Link to="/cart" className="relative">
-            <FiShoppingCart size={26} />
-            <span className="absolute -top-2 -right-3 bg-maroon text-white text-xs rounded-full px-1.5">
-              {cart.length}
-            </span>
+        {/* ✅ RIGHT: Login + Cart */}
+        <div className="flex items-center gap-8 whitespace-nowrap">
+
+          {/* Login */}
+          <Link
+            to="/login"
+            className="flex items-center gap-2 text-gray-800 font-medium hover:text-blue-600"
+          >
+            <FiUser size={20} />
+            <span>Login / Signup</span>
           </Link>
 
-          <Link to="/login">
-            <FiUser size={26} />
+          {/* Cart */}
+          <Link
+            to="/cart"
+            className="flex items-center gap-2 text-gray-800 font-medium hover:text-blue-600 relative"
+          >
+            <FiShoppingCart size={22} />
+            <span>Cart</span>
+
+            <span className="absolute -top-2 left-3 bg-red-500 text-white text-xs rounded-full px-1.5">
+              {cart.length}
+            </span>
           </Link>
         </div>
       </div>
