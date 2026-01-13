@@ -24,30 +24,35 @@ export default function Header() {
     <header className="bg-white border-b">
       <div className="w-full px-10 py-4 flex items-center gap-2">
 
-        {/* ✅ LEFT: Zoya Enterprises text (cursive, stylish) */}
-        <Link to="/" className="leading-none">
-          <span
-            className="block text-3xl text-blue-900 font-semibold"
-            style={{ fontFamily: "'Great Vibes', cursive" }}
-          >
-            Zoya
-          </span>
-          <span
-            className="block text-xl text-blue-600 -mt-1"
-            style={{ fontFamily: "'Great Vibes', cursive" }}
-          >
-            Enterprises
-          </span>
-        </Link>
+        {/* ✅ LEFT: TEXT + LOGO aligned perfectly */}
+<Link to="/" className="flex items-center gap-3 min-w-fit">
+  
+  {/* TEXT */}
+  <div className="flex flex-col justify-center leading-none -mt-1">
+    <span
+  className="text-3xl text-blue-900 font-bold"
+  style={{ fontFamily: "'Great Vibes', cursive" }}
+>
+  Zoya
+</span>
 
-        {/* ✅ LOGO (big) */}
-        <Link to="/" className="flex items-center">
-          <img
-            src={logo}
-            alt="Zoya Logo"
-            className="h-20 w-auto object-contain"
-          />
-        </Link>
+<span
+  className="text-xl text-blue-600 font-bold -mt-2"
+  style={{ fontFamily: "'Great Vibes', cursive" }}
+>
+  Enterprises
+</span>
+
+  </div>
+
+  {/* LOGO */}
+  <img
+    src={logo}
+    alt="Zoya Logo"
+    className="h-20 w-20 object-contain"
+  />
+</Link>
+
 
         {/* ✅ SEARCH BAR (takes all remaining space) */}
         <form
