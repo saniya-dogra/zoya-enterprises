@@ -1,43 +1,45 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import products from "../data/products";
+import ProductCard from "../components/ProductCard";
 
 export default function Search() {
-  const { search } = useLocation();
-  const query = new URLSearchParams(search).get("q")?.toLowerCase();
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get("q") || "";
+  const q = query.toLowerCase().trim();
 
-  // CATEGORY MAPPING
-  const categoryMap = {
-    kids: "kids",
-    child: "kids",
-    school: "kids",
-    "middle school": "kids",
+  // ✅ Convert products object -> single array
+  const allProducts = Object.values(products).flat();
 
-    highschool: "highschool",
-    college: "highschool",
-
-    corporate: "corporate",
-    office: "corporate",
-
-    accessories: "accessories",
-    belts: "accessories",
-    shoes: "accessories",
-  };
-
-  const matchedCategory = categoryMap[query];
+  // ✅ Filter by name
+  const results = allProducts.filter((item) =>
+    item.name.toLowerCase().includes(q)
+  );
 
   return (
-    <div className="max-w-7xl mx-auto px-8 py-12">
-      <h1 className="text-2xl font-bold text-maroon">
-        Search Results
-      </h1>
+    <div className="bg-beige min-h-screen px-10 py-12">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-maroon">Search Results</h1>
+          <p className="text-gray-600 mt-1">
+            Showing results for: <span className="font-semibold">{query}</span>
+          </p>
+        </div>
 
-      {matchedCategory ? (
-        <p className="mt-4">
-          Redirecting to category: <b>{matchedCategory}</b>
+        <Link to="/" className="text-maroon font-semibold">
+          ← Back to Home
+        </Link>
+      </div>
+
+      {results.length === 0 ? (
+        <p className="text-gray-700 text-lg">
+          ❌ No products found for "<b>{query}</b>"
         </p>
       ) : (
-        <p className="mt-4 text-gray-500">
-          No matching category found.
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {results.map((item) => (
+            <ProductCard key={item.id} product={item} />
+          ))}
+        </div>
       )}
     </div>
   );
