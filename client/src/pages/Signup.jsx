@@ -1,65 +1,162 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
 
-function Signup() {
+export default function Signup() {
+  const navigate = useNavigate();
+
+  const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
+    otp: "",
   });
-  const [message, setMessage] = useState("");
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  // Step 1: Send OTP
+  const sendOtp = async () => {
     try {
-      await API.post("/auth/signup", form);
-      setMessage("Signup successful ✅ Please login.");
+      await API.post("/otp/send", { email: form.email });
+      alert("OTP sent to your email ✅");
+      setStep(2);
     } catch (err) {
-      setMessage("Signup failed");
+      alert(err.response?.data?.message || "OTP sending failed ❌");
+    }
+  };
+
+  // Step 2: Verify OTP
+  const verifyOtp = async () => {
+    try {
+      await API.post("/otp/verify", { email: form.email, otp: form.otp });
+      alert("OTP verified ✅");
+      setStep(3);
+    } catch (err) {
+      alert(err.response?.data?.message || "OTP verification failed ❌");
+    }
+  };
+
+  // Step 3: Register user
+  const registerUser = async () => {
+    try {
+      await API.post("/auth/register", {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+      });
+
+      alert("Account created successfully ✅");
+      navigate("/login");
+    } catch (err) {
+      alert(err.response?.data?.message || "Signup failed ❌");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-softwhite">
-      <form
-        onSubmit={handleSignup}
-        className="bg-white p-8 rounded-xl shadow-md w-96"
-      >
-        <h2 className="text-2xl font-bold text-maroon mb-6">Sign Up</h2>
+    <div className="min-h-screen flex items-center justify-center bg-[#f5efe6] px-4">
+      <div className="bg-white w-full max-w-md rounded-2xl shadow-lg p-8">
+        <h2 className="text-3xl font-bold text-center text-maroon">
+          Create Account
+        </h2>
+        <p className="text-center text-gray-600 mt-2">
+          Signup with OTP verification
+        </p>
 
-        <input
-          placeholder="Name"
-          className="w-full mb-4 px-4 py-2 border rounded"
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          required
-        />
+        {/* NAME */}
+        <div className="mt-6">
+          <label className="block font-medium mb-1">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 outline-none"
+            placeholder="Your Name"
+          />
+        </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full mb-4 px-4 py-2 border rounded"
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-          required
-        />
+        {/* EMAIL */}
+        <div className="mt-4">
+          <label className="block font-medium mb-1">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 outline-none"
+            placeholder="you@example.com"
+          />
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full mb-4 px-4 py-2 border rounded"
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-          required
-        />
-
-        <button className="w-full bg-maroon text-white py-2 rounded">
-          Sign Up
-        </button>
-
-        {message && (
-          <p className="mt-4 text-center text-sm">{message}</p>
+        {/* STEP 1 */}
+        {step === 1 && (
+          <button
+            onClick={sendOtp}
+            className="w-full mt-5 bg-maroon text-white py-3 rounded-full font-semibold hover:opacity-90"
+          >
+            Send OTP
+          </button>
         )}
-      </form>
+
+        {/* OTP INPUT */}
+        {step >= 2 && (
+          <div className="mt-4">
+            <label className="block font-medium mb-1">Enter OTP</label>
+            <input
+              type="text"
+              name="otp"
+              value={form.otp}
+              onChange={handleChange}
+              className="w-full border rounded-lg px-4 py-2 outline-none"
+              placeholder="6-digit OTP"
+            />
+          </div>
+        )}
+
+        {/* STEP 2 */}
+        {step === 2 && (
+          <button
+            onClick={verifyOtp}
+            className="w-full mt-5 bg-blue-600 text-white py-3 rounded-full font-semibold hover:opacity-90"
+          >
+            Verify OTP
+          </button>
+        )}
+
+        {/* PASSWORD */}
+        {step >= 3 && (
+          <div className="mt-4">
+            <label className="block font-medium mb-1">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              className="w-full border rounded-lg px-4 py-2 outline-none"
+              placeholder="********"
+            />
+          </div>
+        )}
+
+        {/* STEP 3 */}
+        {step === 3 && (
+          <button
+            onClick={registerUser}
+            className="w-full mt-5 bg-green-600 text-white py-3 rounded-full font-semibold hover:opacity-90"
+          >
+            Create Account
+          </button>
+        )}
+
+        <p className="text-center mt-6 text-gray-700">
+          Already have an account?{" "}
+          <Link to="/login" className="text-maroon font-semibold">
+            Login
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
-
-export default Signup;
