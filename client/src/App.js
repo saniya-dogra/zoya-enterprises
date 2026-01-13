@@ -1,40 +1,38 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Cart from "./pages/Cart";
-import Category from "./pages/Category";
 import Navbar from "./components/Navbar";
-import Search from "./pages/Search";
+import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import Category from "./pages/Category";
+import Cart from "./pages/Cart";
+import Login from "./pages/Login";
 import Contact from "./pages/Contact";
-
-
-
+import Search from "./pages/Search";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
+      {/* TOP HEADER */}
       <Header />
-      <Navbar /> 
 
+      {/* BLUE NAVBAR */}
+      <Navbar />
+
+      {/* PAGE ROUTES */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/cart" element={<Cart />} />
         <Route path="/category/:category" element={<Category />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
-
-        
+        <Route path="/search" element={<Search />} />
       </Routes>
 
+      {/* FOOTER */}
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 
 export default App;
-
