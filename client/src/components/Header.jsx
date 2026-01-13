@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi";
 import { useState } from "react";
-import logo from "../assets/zoya_logo.png";
+import logo from "../assets/zoya-interprises-logo.png";
 import { useCart } from "../services/cart";
 
 export default function Header() {
@@ -25,8 +25,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
 
         {/* LOGO */}
-        <Link to="/" className="flex items-center gap-4">
-          <img src={logo} alt="Zoya Enterprises" className="h-20 w-20 object-contain" />
+        <Link to="/" className="flex items-center gap-0">
+          <img src={logo} alt="Zoya Enterprises" className="h-32 w-32 object-contain" />
 
           <div className="leading-none">
             <span className="block text-4xl text-blue-900" style={{ fontFamily: "'Great Vibes', cursive" }}>
