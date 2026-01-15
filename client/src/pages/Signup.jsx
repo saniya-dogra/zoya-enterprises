@@ -2,29 +2,34 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 
-function Login() {
+export default function Signup() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const registerUser = async (e) => {
     e.preventDefault();
     setMessage("");
     setLoading(true);
 
     try {
-      const res = await API.post("/auth/login", { email, password });
+      await API.post("/auth/register", form);
+      setMessage("Account created successfully ✅");
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-
-      setMessage("Login successful ✅");
-      setTimeout(() => navigate("/"), 1000);
+      setTimeout(() => navigate("/login"), 1000);
     } catch (err) {
-      setMessage(err.response?.data?.message || "Invalid email or password ❌");
+      setMessage(err.response?.data?.message || "Signup failed ❌");
     } finally {
       setLoading(false);
     }
@@ -34,11 +39,11 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0b1f3a] to-[#f5efe6] px-4">
       <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 border border-[#d4af37]">
         <h2 className="text-3xl font-extrabold text-center text-[#0b1f3a]">
-          Welcome Back
+          Create Account
         </h2>
 
         <p className="text-center text-gray-500 mt-2">
-          Login to continue shopping with Zoya Enterprises
+          Signup with Email & Password
         </p>
 
         {/* ✅ Message */}
@@ -49,16 +54,28 @@ function Login() {
         )}
 
         {/* ✅ FORM */}
-        <form onSubmit={handleLogin}>
+        <form onSubmit={registerUser}>
           <div className="mt-6">
-            <label className="font-semibold text-[#0b1f3a]">
-              Email Address
-            </label>
+            <label className="font-semibold text-[#0b1f3a]">Full Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full mt-2 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+              required
+            />
+          </div>
+
+          <div className="mt-4">
+            <label className="font-semibold text-[#0b1f3a]">Email</label>
             <input
               type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              placeholder="you@gmail.com"
+              value={form.email}
+              onChange={handleChange}
               className="w-full mt-2 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
               required
             />
@@ -68,9 +85,10 @@ function Login() {
             <label className="font-semibold text-[#0b1f3a]">Password</label>
             <input
               type="password"
+              name="password"
               placeholder="********"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={form.password}
+              onChange={handleChange}
               className="w-full mt-2 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
               required
             />
@@ -81,22 +99,20 @@ function Login() {
             disabled={loading}
             className="w-full mt-6 bg-[#0b1f3a] text-white py-3 rounded-full font-bold hover:bg-[#132d52] transition disabled:opacity-60"
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Creating..." : "Create Account"}
           </button>
         </form>
 
         <p className="text-center mt-5 text-gray-600">
-          Don’t have an account?{" "}
+          Already have an account?{" "}
           <span
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/login")}
             className="text-[#d4af37] font-bold cursor-pointer hover:underline"
           >
-            Sign up
+            Login
           </span>
         </p>
       </div>
     </div>
   );
 }
-
-export default Login;
