@@ -5,47 +5,22 @@ import API from "../services/api";
 export default function Signup() {
   const navigate = useNavigate();
 
-  const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
-    otp: "",
   });
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  // Step 1: Send OTP
-  const sendOtp = async () => {
-    try {
-      await API.post("/otp/send", { email: form.email });
-      alert("OTP sent to your email ✅");
-      setStep(2);
-    } catch (err) {
-      alert(err.response?.data?.message || "OTP sending failed ❌");
-    }
-  };
-
-  // Step 2: Verify OTP
-  const verifyOtp = async () => {
-    try {
-      await API.post("/otp/verify", { email: form.email, otp: form.otp });
-      alert("OTP verified ✅");
-      setStep(3);
-    } catch (err) {
-      alert(err.response?.data?.message || "OTP verification failed ❌");
-    }
-  };
-
-  // Step 3: Register user
   const registerUser = async () => {
     try {
-      await API.post("/auth/register", {
-        name: form.name,
-        email: form.email,
-        password: form.password,
-      });
+      if (!form.name || !form.email || !form.password) {
+        return alert("Please fill all fields ❌");
+      }
+
+      await API.post("/auth/register", form);
 
       alert("Account created successfully ✅");
       navigate("/login");
@@ -61,7 +36,7 @@ export default function Signup() {
           Create Account
         </h2>
         <p className="text-center text-gray-600 mt-2">
-          Signup with OTP verification
+          Signup with Email & Password
         </p>
 
         {/* NAME */}
@@ -86,69 +61,29 @@ export default function Signup() {
             value={form.email}
             onChange={handleChange}
             className="w-full border rounded-lg px-4 py-2 outline-none"
-            placeholder="you@example.com"
+            placeholder="you@gmail.com"
           />
         </div>
 
-        {/* STEP 1 */}
-        {step === 1 && (
-          <button
-            onClick={sendOtp}
-            className="w-full mt-5 bg-maroon text-white py-3 rounded-full font-semibold hover:opacity-90"
-          >
-            Send OTP
-          </button>
-        )}
-
-        {/* OTP INPUT */}
-        {step >= 2 && (
-          <div className="mt-4">
-            <label className="block font-medium mb-1">Enter OTP</label>
-            <input
-              type="text"
-              name="otp"
-              value={form.otp}
-              onChange={handleChange}
-              className="w-full border rounded-lg px-4 py-2 outline-none"
-              placeholder="6-digit OTP"
-            />
-          </div>
-        )}
-
-        {/* STEP 2 */}
-        {step === 2 && (
-          <button
-            onClick={verifyOtp}
-            className="w-full mt-5 bg-blue-600 text-white py-3 rounded-full font-semibold hover:opacity-90"
-          >
-            Verify OTP
-          </button>
-        )}
-
         {/* PASSWORD */}
-        {step >= 3 && (
-          <div className="mt-4">
-            <label className="block font-medium mb-1">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              className="w-full border rounded-lg px-4 py-2 outline-none"
-              placeholder="********"
-            />
-          </div>
-        )}
+        <div className="mt-4">
+          <label className="block font-medium mb-1">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 outline-none"
+            placeholder="********"
+          />
+        </div>
 
-        {/* STEP 3 */}
-        {step === 3 && (
-          <button
-            onClick={registerUser}
-            className="w-full mt-5 bg-green-600 text-white py-3 rounded-full font-semibold hover:opacity-90"
-          >
-            Create Account
-          </button>
-        )}
+        <button
+          onClick={registerUser}
+          className="w-full mt-5 bg-green-600 text-white py-3 rounded-full font-semibold hover:opacity-90"
+        >
+          Create Account
+        </button>
 
         <p className="text-center mt-6 text-gray-700">
           Already have an account?{" "}

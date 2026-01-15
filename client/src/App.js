@@ -9,10 +9,16 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Contact from "./pages/Contact";
 import Search from "./pages/Search";
+import { Toaster } from "react-hot-toast";
+import Checkout from "./pages/Checkout";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <>
+     <Toaster position="top-right" />
+     <ToastContainer position="top-right" autoClose={2000} />
       {/* TOP HEADER */}
       <Header />
 
@@ -28,6 +34,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/search" element={<Search />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/checkout" element={<Checkout />} />
+
 
       </Routes>
 

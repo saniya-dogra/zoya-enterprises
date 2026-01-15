@@ -1,4 +1,4 @@
-
+import toast from "react-hot-toast";
 import { useCart } from "../services/cart";
 
 function ProductCard({ product }) {
@@ -16,11 +16,14 @@ function ProductCard({ product }) {
       <p className="text-maroon font-bold mt-1">₹{product.price}</p>
 
       <button
-        onClick={() => addToCart(product)}
-        className="mt-3 bg-maroon text-white px-4 py-2 rounded-full hover:opacity-90"
-      >
-        Add to Cart
-      </button>
+  onClick={() => {
+    addToCart(product);
+    toast.success("Added to cart ✅");
+  }}
+  className="bg-maroon text-white px-6 py-2 rounded-full"
+>
+  Add to Cart
+</button>
     </div>
   );
 }
