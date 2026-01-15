@@ -29,7 +29,7 @@ export default function Signup() {
     }
   };
 
- return (
+return (
   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0b1f3a] to-[#f5efe6] px-4">
     <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 border border-[#d4af37]">
       
@@ -87,5 +87,6 @@ export default function Signup() {
     </div>
   </div>
 );
+
 
 }
