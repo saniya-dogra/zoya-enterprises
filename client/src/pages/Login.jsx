@@ -33,89 +33,51 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-beige flex items-center justify-center px-4">
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-lg p-8">
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0b1f3a] to-[#f5efe6] px-4">
+    <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 border border-[#d4af37]">
+      
+      <h2 className="text-3xl font-extrabold text-center text-[#0b1f3a]">
+        Welcome Back
+      </h2>
+      <p className="text-center text-gray-500 mt-2">
+        Login to continue shopping with Zoya Enterprises
+      </p>
 
-        {/* Title */}
-        <h2 className="text-3xl font-bold text-maroon text-center mb-2">
-          Welcome Back
-        </h2>
-        <p className="text-center text-sm text-gray-500 mb-6">
-          Login to continue shopping with Zoya Interprises
-        </p>
-
-        {/* Form */}
-        <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">
-              Email Address
-            </label>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-maroon"
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="mb-6">
-            <label className="block text-sm font-medium mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              placeholder="••••••••"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-maroon"
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-maroon text-white py-3 rounded-full font-semibold hover:opacity-90 transition"
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
-
-        {/* Message */}
-        {message && (
-          <p
-            className={`mt-4 text-center text-sm ${
-              message.includes("successful")
-                ? "text-green-600"
-                : "text-red-600"
-            }`}
-          >
-            {message}
-          </p>
-        )}
-
-        {/* Links */}
-        <div className="mt-6 text-center text-sm">
-          <p>
-            Don’t have an account?{" "}
-            <Link
-              to="/signup"
-              className="text-maroon font-semibold hover:underline"
-            >
-              Sign up
-            </Link>
-          </p>
-
-          <Link
-            to="/"
-            className="block mt-3 text-gray-500 hover:text-maroon"
-          >
-            ← Back to Home
-          </Link>
-        </div>
+      <div className="mt-6">
+        <label className="font-semibold text-[#0b1f3a]">Email Address</label>
+        <input
+          type="email"
+          placeholder="you@example.com"
+          className="w-full mt-2 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+        />
       </div>
+
+      <div className="mt-4">
+        <label className="font-semibold text-[#0b1f3a]">Password</label>
+        <input
+          type="password"
+          placeholder="********"
+          className="w-full mt-2 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+        />
+      </div>
+
+      <button className="w-full mt-6 bg-[#0b1f3a] text-white py-3 rounded-full font-bold hover:bg-[#132d52] transition">
+        Login
+      </button>
+
+      <p className="text-center mt-5 text-gray-600">
+        Don’t have an account?{" "}
+        <span
+          onClick={() => navigate("/signup")}
+          className="text-[#d4af37] font-bold cursor-pointer hover:underline"
+        >
+          Sign up
+        </span>
+      </p>
     </div>
-  );
+  </div>
+);
+
 }
 
 export default Login;
