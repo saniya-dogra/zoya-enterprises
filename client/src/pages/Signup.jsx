@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
 
-export default function Login() {
+export default function Signup() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -13,85 +14,78 @@ export default function Login() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleLogin = async () => {
+  const registerUser = async () => {
     try {
-      if (!form.email || !form.password) {
+      if (!form.name || !form.email || !form.password) {
         return alert("Please fill all fields ❌");
       }
 
-      const res = await API.post("/auth/login", form);
+      await API.post("/auth/register", form);
 
-      // Save token in localStorage
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-
-      alert("Login Successful ✅");
-      navigate("/");
+      alert("Account created successfully ✅");
+      navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.message || "Login failed ❌");
+      alert(err.response?.data?.message || "Signup failed ❌");
     }
   };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f5efe6] px-4">
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-center text-maroon">
-          Welcome Back
-        </h2>
-        <p className="text-center text-gray-600 mt-2">
-          Login to continue shopping with Zoya Enterprises
-        </p>
+ return (
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0b1f3a] to-[#f5efe6] px-4">
+    <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 border border-[#d4af37]">
+      
+      <h2 className="text-3xl font-extrabold text-center text-[#0b1f3a]">
+        Create Account
+      </h2>
+      <p className="text-center text-gray-500 mt-2">
+        Signup with Email & Password
+      </p>
 
-        {/* EMAIL */}
-        <div className="mt-6">
-          <label className="block font-medium mb-1">Email Address</label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full border rounded-lg px-4 py-2 outline-none"
-            placeholder="you@example.com"
-          />
-        </div>
+      {/* Full Name */}
+      <div className="mt-6">
+        <label className="font-semibold text-[#0b1f3a]">Full Name</label>
+        <input
+          type="text"
+          placeholder="Your Name"
+          className="w-full mt-2 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+        />
+      </div>
 
-        {/* PASSWORD */}
-        <div className="mt-4">
-          <label className="block font-medium mb-1">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            className="w-full border rounded-lg px-4 py-2 outline-none"
-            placeholder="********"
-          />
-        </div>
+      {/* Email */}
+      <div className="mt-4">
+        <label className="font-semibold text-[#0b1f3a]">Email</label>
+        <input
+          type="email"
+          placeholder="you@gmail.com"
+          className="w-full mt-2 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+        />
+      </div>
 
-        <button
-          onClick={handleLogin}
-          className="w-full mt-6 bg-[#7b1f1f] text-white py-3 rounded-full font-semibold hover:opacity-90"
+      {/* Password */}
+      <div className="mt-4">
+        <label className="font-semibold text-[#0b1f3a]">Password</label>
+        <input
+          type="password"
+          placeholder="********"
+          className="w-full mt-2 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+        />
+      </div>
+
+      {/* Button */}
+      <button className="w-full mt-6 bg-[#0b1f3a] text-white py-3 rounded-full font-bold hover:bg-[#132d52] transition">
+        Create Account
+      </button>
+
+      <p className="text-center mt-5 text-gray-600">
+        Already have an account?{" "}
+        <span
+          onClick={() => navigate("/login")}
+          className="text-[#d4af37] font-bold cursor-pointer hover:underline"
         >
           Login
-        </button>
-
-        <p className="text-center mt-6 text-gray-700">
-          Don’t have an account?{" "}
-          <span
-            className="text-maroon font-semibold cursor-pointer"
-            onClick={() => navigate("/signup")}
-          >
-            Sign up
-          </span>
-        </p>
-
-        <p
-          className="text-center mt-3 text-gray-500 cursor-pointer hover:underline"
-          onClick={() => navigate("/")}
-        >
-          ← Back to Home
-        </p>
-      </div>
+        </span>
+      </p>
     </div>
-  );
+  </div>
+);
+
 }
