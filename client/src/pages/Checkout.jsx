@@ -1,49 +1,53 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../services/cart";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Checkout() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { cart, clearCart } = useCart();
+
+  const { paymentMethod, grandTotal } = location.state || {};
 
   const [address, setAddress] = useState({
     fullName: "",
     phone: "",
     pincode: "",
-    city: "",
-    state: "",
     house: "",
     area: "",
+    city: "",
+    state: "",
   });
-
-  const [paymentMethod, setPaymentMethod] = useState("COD");
-
-  const subtotal = cart.reduce((total, item) => total + item.price * item.qty, 0);
-  const deliveryFee = subtotal > 999 ? 0 : 50;
-  const gst = Math.round(subtotal * 0.05);
-  const grandTotal = subtotal + deliveryFee + gst;
 
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
 
   const placeOrder = () => {
-    // validation
-    for (let key in address) {
-      if (!address[key]) {
-        return toast.error("Please fill all address fields ❌");
-      }
+    if (
+      !address.fullName ||
+      !address.phone ||
+      !address.pincode ||
+      !address.house ||
+      !address.area ||
+      !address.city ||
+      !address.state
+    ) {
+      toast.error("Please fill complete address ❌");
+      return;
     }
 
-    toast.success("Order placed successfully ✅");
+    if (cart.length === 0) {
+      toast.error("Cart is empty ❌");
+      return;
+    }
 
-    alert(`
-Order Placed ✅
-Payment: ${paymentMethod}
-Total: ₹${grandTotal}
-Deliver to: ${address.house}, ${address.area}, ${address.city}
-`);
+    // ✅ Here you will integrate real payment gateway later (Razorpay)
+    toast.success(
+      `Order placed ✅ Payment: ${paymentMethod} | Total ₹${grandTotal}`
+    );
 
     clearCart();
     navigate("/");
@@ -51,130 +55,69 @@ Deliver to: ${address.house}, ${address.area}, ${address.city}
 
   return (
     <div className="min-h-screen bg-[#f5efe6] px-6 py-10">
-      <h1 className="text-3xl font-bold mb-6 text-maroon">Checkout</h1>
+      <ToastContainer position="top-right" autoClose={2000} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* ADDRESS FORM */}
-        <div className="bg-white rounded-xl shadow-md p-6">
-          <h2 className="text-xl font-bold mb-4">Delivery Address</h2>
+      <h1 className="text-3xl font-bold mb-6">Delivery Address</h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              className="border px-4 py-2 rounded-lg"
-              placeholder="Full Name"
-              name="fullName"
-              value={address.fullName}
-              onChange={handleChange}
-            />
-
-            <input
-              className="border px-4 py-2 rounded-lg"
-              placeholder="Phone Number"
-              name="phone"
-              value={address.phone}
-              onChange={handleChange}
-            />
-
-            <input
-              className="border px-4 py-2 rounded-lg"
-              placeholder="Pincode"
-              name="pincode"
-              value={address.pincode}
-              onChange={handleChange}
-            />
-
-            <input
-              className="border px-4 py-2 rounded-lg"
-              placeholder="City"
-              name="city"
-              value={address.city}
-              onChange={handleChange}
-            />
-
-            <input
-              className="border px-4 py-2 rounded-lg"
-              placeholder="State"
-              name="state"
-              value={address.state}
-              onChange={handleChange}
-            />
-
-            <input
-              className="border px-4 py-2 rounded-lg"
-              placeholder="House No / Building"
-              name="house"
-              value={address.house}
-              onChange={handleChange}
-            />
-
-            <input
-              className="border px-4 py-2 rounded-lg md:col-span-2"
-              placeholder="Area / Street / Landmark"
-              name="area"
-              value={address.area}
-              onChange={handleChange}
-            />
-          </div>
+      <div className="bg-white p-6 rounded-xl shadow-md max-w-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            name="fullName"
+            placeholder="Full Name"
+            value={address.fullName}
+            onChange={handleChange}
+            className="border p-3 rounded-lg"
+          />
+          <input
+            name="phone"
+            placeholder="Phone Number"
+            value={address.phone}
+            onChange={handleChange}
+            className="border p-3 rounded-lg"
+          />
+          <input
+            name="pincode"
+            placeholder="Pincode"
+            value={address.pincode}
+            onChange={handleChange}
+            className="border p-3 rounded-lg"
+          />
+          <input
+            name="house"
+            placeholder="Flat / House No."
+            value={address.house}
+            onChange={handleChange}
+            className="border p-3 rounded-lg"
+          />
+          <input
+            name="area"
+            placeholder="Area / Street / Locality"
+            value={address.area}
+            onChange={handleChange}
+            className="border p-3 rounded-lg"
+          />
+          <input
+            name="city"
+            placeholder="City"
+            value={address.city}
+            onChange={handleChange}
+            className="border p-3 rounded-lg"
+          />
+          <input
+            name="state"
+            placeholder="State"
+            value={address.state}
+            onChange={handleChange}
+            className="border p-3 rounded-lg"
+          />
         </div>
 
-        {/* BILL + PAYMENT */}
-        <div className="bg-white rounded-xl shadow-md p-6 h-fit">
-          <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-
-          <div className="flex justify-between mb-2">
-            <span>Subtotal</span>
-            <span>₹{subtotal}</span>
-          </div>
-
-          <div className="flex justify-between mb-2">
-            <span>Delivery Fee</span>
-            <span>{deliveryFee === 0 ? "Free" : `₹${deliveryFee}`}</span>
-          </div>
-
-          <div className="flex justify-between mb-2">
-            <span>GST (5%)</span>
-            <span>₹{gst}</span>
-          </div>
-
-          <hr className="my-4" />
-
-          <div className="flex justify-between font-bold text-lg">
-            <span>Grand Total</span>
-            <span>₹{grandTotal}</span>
-          </div>
-
-          {/* Payment */}
-          <div className="mt-5">
-            <h3 className="font-semibold mb-2">Payment Method</h3>
-
-            <label className="flex items-center gap-2 mb-2 cursor-pointer">
-              <input
-                type="radio"
-                value="COD"
-                checked={paymentMethod === "COD"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Cash on Delivery
-            </label>
-
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                value="UPI"
-                checked={paymentMethod === "UPI"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              UPI Payment
-            </label>
-          </div>
-
-          <button
-            onClick={placeOrder}
-            className="w-full mt-6 bg-green-600 text-white py-3 rounded-full font-semibold hover:opacity-90"
-          >
-            Place Order
-          </button>
-        </div>
+        <button
+          onClick={placeOrder}
+          className="w-full mt-6 bg-green-600 text-white py-3 rounded-full font-semibold hover:opacity-90"
+        >
+          Place Order
+        </button>
       </div>
     </div>
   );
