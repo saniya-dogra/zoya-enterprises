@@ -48,30 +48,41 @@ export default function Header() {
 
         {/* ✅ SEARCH BAR (takes all remaining space) */}
         <form
-          onSubmit={handleSearch}
-          className="flex-1 flex items-center bg-gray-100 rounded-full px-5 py-3 relative"
-        >
-          <FiSearch className="text-gray-500 mr-3" size={18} />
+  onSubmit={handleSearch}
+  className="flex-1 relative"
+>
+  {/* 🔍 Search Icon */}
+  <FiSearch
+    className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
+    size={18}
+  />
 
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search for products, brands and more"
-            className="w-full bg-transparent outline-none text-sm pr-8"
-          />
+  <input
+    type="text"
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+    placeholder="Search for products, brands and more"
+    className="w-full bg-gray-100 rounded-full py-3 pl-12 pr-12 outline-none text-sm 
+               focus:ring-2 focus:ring-blue-400 transition"
+  />
 
-          {/* ❌ Cross Button */}
-          {query && (
-            <button
-              type="button"
-              onClick={() => setQuery("")}
-              className="absolute right-5 text-gray-500 hover:text-black"
-            >
-              <FiX size={18} />
-            </button>
-          )}
-        </form>
+  {/* ❌ Clear Button */}
+  {query && (
+    <button
+      type="button"
+      onClick={() => setQuery("")}
+      className="
+        absolute right-3 top-1/2 -translate-y-1/2
+        bg-gray-300 hover:bg-gray-400
+        rounded-full p-1.5
+        transition
+      "
+    >
+      <FiX size={14} className="text-gray-700" />
+    </button>
+  )}
+</form>
+
 
         {/* ✅ RIGHT: Login + Cart */}
         <div className="flex items-center gap-8 whitespace-nowrap">
