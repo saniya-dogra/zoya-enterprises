@@ -11,23 +11,28 @@ const links = [
 
 export default function Navbar() {
   return (
-    <nav className="bg-blue-600">
-      <div className="max-w-7xl mx-auto px-10">
-        <ul className="flex justify-center gap-10 text-white font-semibold text-sm py-3">
+    <nav className="bg-[#1f2a38] shadow-md">
+      <div className="max-w-7xl mx-auto px-6">
+        <ul className="flex justify-center gap-10 text-white text-sm font-medium py-3">
+
           {links.map((link) => (
             <li key={link.name}>
               <NavLink
                 to={link.path}
                 className={({ isActive }) =>
-                  isActive
-                    ? "text-yellow-300 border-b-2 border-yellow-300 pb-1"
-                    : "hover:text-yellow-300"
+                  `relative hover:text-yellow-300 transition
+                   after:absolute after:left-0 after:-bottom-1
+                   after:h-[2px] after:bg-yellow-300 after:transition-all
+                   ${isActive
+                     ? "text-yellow-300 after:w-full"
+                     : "after:w-0 hover:after:w-full"}`
                 }
               >
                 {link.name}
               </NavLink>
             </li>
           ))}
+
         </ul>
       </div>
     </nav>
