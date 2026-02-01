@@ -1,118 +1,124 @@
-import { Link } from "react-router-dom";
-import {
-  FiFacebook,
-  FiInstagram,
-  FiTwitter,
-  FiMail,
-  FiPhone,
-  FiMapPin
-} from "react-icons/fi";
+import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-white to-blue-50 border-t mt-16">
+    <footer className="relative mt-20 bg-[#1f2a38] text-gray-200">
 
-      {/* TOP SECTION */}
+      {/* MAIN FOOTER */}
       <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-5 gap-10">
 
         {/* BRAND */}
-        <div>
-          <h2 className="text-2xl font-extrabold text-blue-900">
+        <div className="space-y-4 animate-fadeIn">
+          <h2 className="text-2xl font-bold text-white">
             Zoya Enterprises
           </h2>
-          <p className="mt-4 text-gray-600 text-sm leading-relaxed">
-            Premium school & corporate uniform solutions.  
-            Quality fabrics, modern stitching, and reliable delivery
-            for institutions and organizations.
+
+          <p className="text-sm text-gray-300 leading-relaxed">
+            Premium school & corporate uniform solutions with modern
+            stitching, quality fabrics, and reliable delivery.
           </p>
 
-          {/* SOCIAL */}
-          <div className="flex gap-4 mt-5 text-blue-700 text-xl">
-            <FiFacebook className="cursor-pointer hover:text-blue-900" />
-            <FiInstagram className="cursor-pointer hover:text-pink-600" />
-            <FiTwitter className="cursor-pointer hover:text-blue-500" />
+          {/* Social Icons */}
+          <div className="flex gap-4 text-lg mt-4">
+            {[FaFacebookF, FaInstagram, FaTwitter].map((Icon, i) => (
+              <a
+                key={i}
+                href="#"
+                className="p-2 rounded-full bg-[#27364a] hover:bg-blue-500 hover:scale-110 transition duration-300 shadow-md"
+              >
+                <Icon />
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* ABOUT */}
-        <div>
-          <h3 className="footerTitle">About Us</h3>
-          <ul className="footerList">
-            <li><Link to="/about">Our Story</Link></li>
-            <li><Link to="/careers">Careers</Link></li>
-            <li><Link to="/press">Press</Link></li>
-            <li><Link to="/contact">Contact Us</Link></li>
-          </ul>
-        </div>
-
-        {/* PRODUCTS */}
-        <div>
-          <h3 className="footerTitle">Products</h3>
-          <ul className="footerList">
-            <li><Link to="/category/kids">Kids Uniforms</Link></li>
-            <li><Link to="/category/highschool">High School</Link></li>
-            <li><Link to="/category/corporate">Corporate Wear</Link></li>
-            <li><Link to="/category/accessories">Accessories</Link></li>
-          </ul>
-        </div>
-
-        {/* SUPPORT */}
-        <div>
-          <h3 className="footerTitle">Support</h3>
-          <ul className="footerList">
-            <li><Link to="/shipping">Shipping</Link></li>
-            <li><Link to="/returns">Returns</Link></li>
-            <li><Link to="/privacy">Privacy Policy</Link></li>
-            <li><Link to="/terms">Terms & Conditions</Link></li>
-          </ul>
-        </div>
+        {/* FOOTER COLUMN COMPONENT */}
+        {[
+          {
+            title: "About Us",
+            items: ["Our Story", "Careers", "Press", "Contact Us"],
+          },
+          {
+            title: "Products",
+            items: [
+              "Kids Uniforms",
+              "High School",
+              "Corporate Wear",
+              "Accessories",
+            ],
+          },
+          {
+            title: "Support",
+            items: [
+              "Shipping",
+              "Returns",
+              "Privacy Policy",
+              "Terms & Conditions",
+            ],
+          },
+        ].map((section, idx) => (
+          <div key={idx} className="space-y-3 animate-fadeIn">
+            <h3 className="font-semibold text-white">{section.title}</h3>
+            <ul className="space-y-2 text-sm">
+              {section.items.map((item, i) => (
+                <li
+                  key={i}
+                  className="cursor-pointer hover:text-blue-400 hover:translate-x-2 transition duration-300"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
 
         {/* CONTACT */}
-        <div>
-          <h3 className="footerTitle">Contact</h3>
+        <div className="space-y-3 animate-fadeIn">
+          <h3 className="font-semibold text-white">Contact</h3>
 
-          <div className="space-y-3 text-sm text-gray-600">
-            <div className="flex gap-2 items-center">
-              <FiMail /> support@zoyaenterprises.com
-            </div>
+          <p className="flex gap-2 items-center text-sm hover:text-blue-400 transition">
+            <FiMail /> support@zoyaenterprises.com
+          </p>
 
-            <div className="flex gap-2 items-center">
-              <FiPhone /> +91 XXXXX XXXXX
-            </div>
+          <p className="flex gap-2 items-center text-sm hover:text-blue-400 transition">
+            <FiPhone /> +91 XXXXX XXXXX
+          </p>
 
-            <div className="flex gap-2 items-start">
-              <FiMapPin />
-              Srinagar, J&K  
-              India
-            </div>
-          </div>
+          <p className="flex gap-2 items-center text-sm hover:text-blue-400 transition">
+            <FiMapPin /> Srinagar, J&K, India
+          </p>
 
-          {/* WhatsApp CTA */}
-          <a
-            href="https://wa.me/91XXXXXXXXXX"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block mt-5 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold"
-          >
+          {/* Animated WhatsApp Button */}
+          <button className="mt-3 bg-green-500 hover:bg-green-600 px-5 py-2 rounded-full text-white font-semibold shadow-md hover:scale-105 transition duration-300">
             WhatsApp Support
-          </a>
+          </button>
         </div>
       </div>
 
-      {/* MIDDLE STRIP */}
-      <div className="bg-blue-100 border-y">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between text-sm text-blue-900 font-medium gap-3">
-          <span>Secure Payments</span>
-          <span>Easy Returns</span>
-          <span>Trusted by Schools & Institutions</span>
-          <span>Fast Delivery</span>
-        </div>
+      {/* TRUST STRIP */}
+      <div className="bg-[#27364a] grid md:grid-cols-4 text-center text-sm">
+        {[
+          "Secure Payments",
+          "Easy Returns",
+          "Trusted by Schools",
+          "Fast Delivery",
+        ].map((text, i) => (
+          <div
+            key={i}
+            className="py-4 border-t border-gray-600 hover:bg-[#32465e] transition duration-300 cursor-default"
+          >
+            {text}
+          </div>
+        ))}
       </div>
 
-      {/* BOTTOM */}
-      <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm text-gray-600">
+      {/* COPYRIGHT */}
+      <div className="text-center text-sm py-4 border-t border-gray-600">
         © {new Date().getFullYear()} Zoya Enterprises — All Rights Reserved
       </div>
     </footer>
   );
 }
+
+
