@@ -24,7 +24,7 @@ export default function Footer() {
             {[FaFacebookF, FaInstagram, FaTwitter].map((Icon, i) => (
               <a
                 key={i}
-                href="#"
+                href="/"
                 className="p-2 rounded-full bg-[#27364a] hover:bg-blue-500 hover:scale-110 transition duration-300 shadow-md"
               >
                 <Icon />
