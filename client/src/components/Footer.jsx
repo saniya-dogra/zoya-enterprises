@@ -2,6 +2,12 @@ import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
+  const socialLinks = [
+    { icon: FaFacebookF, link: "https://facebook.com" },
+    { icon: FaInstagram, link: "https://instagram.com" },
+    { icon: FaTwitter, link: "https://twitter.com" },
+  ];
+
   return (
     <footer className="relative mt-20 bg-[#1f2a38] text-gray-200">
 
@@ -9,7 +15,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-5 gap-10">
 
         {/* BRAND */}
-        <div className="space-y-4 animate-fadeIn">
+        <div className="space-y-4">
           <h2 className="text-2xl font-bold text-white">
             Zoya Enterprises
           </h2>
@@ -21,10 +27,12 @@ export default function Footer() {
 
           {/* Social Icons */}
           <div className="flex gap-4 text-lg mt-4">
-            {[FaFacebookF, FaInstagram, FaTwitter].map((Icon, i) => (
+            {socialLinks.map(({ icon: Icon, link }, i) => (
               <a
                 key={i}
-                href="/"
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded-full bg-[#27364a] hover:bg-blue-500 hover:scale-110 transition duration-300 shadow-md"
               >
                 <Icon />
@@ -33,7 +41,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* FOOTER COLUMN COMPONENT */}
+        {/* FOOTER COLUMNS */}
         {[
           {
             title: "About Us",
@@ -58,8 +66,9 @@ export default function Footer() {
             ],
           },
         ].map((section, idx) => (
-          <div key={idx} className="space-y-3 animate-fadeIn">
+          <div key={idx} className="space-y-3">
             <h3 className="font-semibold text-white">{section.title}</h3>
+
             <ul className="space-y-2 text-sm">
               {section.items.map((item, i) => (
                 <li
@@ -74,7 +83,7 @@ export default function Footer() {
         ))}
 
         {/* CONTACT */}
-        <div className="space-y-3 animate-fadeIn">
+        <div className="space-y-3">
           <h3 className="font-semibold text-white">Contact</h3>
 
           <p className="flex gap-2 items-center text-sm hover:text-blue-400 transition">
@@ -89,10 +98,15 @@ export default function Footer() {
             <FiMapPin /> Srinagar, J&K, India
           </p>
 
-          {/* Animated WhatsApp Button */}
-          <button className="mt-3 bg-green-500 hover:bg-green-600 px-5 py-2 rounded-full text-white font-semibold shadow-md hover:scale-105 transition duration-300">
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/91XXXXXXXXXX"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-3 bg-green-500 hover:bg-green-600 px-5 py-2 rounded-full text-white font-semibold shadow-md hover:scale-105 transition duration-300"
+          >
             WhatsApp Support
-          </button>
+          </a>
         </div>
       </div>
 
@@ -120,5 +134,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-
