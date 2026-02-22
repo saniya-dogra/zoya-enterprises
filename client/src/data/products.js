@@ -60,7 +60,7 @@ corporate: [
     id: 301,
     name: "School Belt",
     price: 299,
-    ggender:"all",
+    gender:"all",
     image: "https://images.unsplash.com/photo-1568749750364-053fd74b4115?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c2Nob29sJTIwdW5pZm9ybSUyMGJlbHR8ZW58MHx8MHx8fDA%3D",
   },
   {
