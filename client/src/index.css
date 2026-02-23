@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== GLOBAL RESPONSIVE FIXES ===== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Prevent images from breaking layout */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Prevent long text overflow */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  word-wrap: break-word;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 @layer components {
   .footerTitle {
     @apply font-bold text-blue-900 mb-4 text-lg;

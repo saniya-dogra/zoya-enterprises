@@ -9,14 +9,14 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative mt-20 bg-[#1f2a38] text-gray-200">
+    <footer className="relative mt-14 md:mt-20 bg-[#1f2a38] text-gray-200">
 
       {/* MAIN FOOTER */}
-      <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-5 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 md:gap-10">
 
         {/* BRAND */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-white">
+          <h2 className="text-xl md:text-2xl font-bold text-white">
             Zoya Enterprises
           </h2>
 
@@ -26,7 +26,7 @@ export default function Footer() {
           </p>
 
           {/* Social Icons */}
-          <div className="flex gap-4 text-lg mt-4">
+          <div className="flex gap-3 text-lg mt-4">
             {socialLinks.map(({ icon: Icon, link }, i) => (
               <a
                 key={i}
@@ -73,7 +73,7 @@ export default function Footer() {
               {section.items.map((item, i) => (
                 <li
                   key={i}
-                  className="cursor-pointer hover:text-blue-400 hover:translate-x-2 transition duration-300"
+                  className="cursor-pointer hover:text-blue-400 hover:translate-x-1 transition duration-300"
                 >
                   {item}
                 </li>
@@ -98,7 +98,6 @@ export default function Footer() {
             <FiMapPin /> Srinagar, J&K, India
           </p>
 
-          {/* WhatsApp */}
           <a
             href="https://wa.me/91XXXXXXXXXX"
             target="_blank"
@@ -111,7 +110,7 @@ export default function Footer() {
       </div>
 
       {/* TRUST STRIP */}
-      <div className="bg-[#27364a] grid md:grid-cols-4 text-center text-sm">
+      <div className="bg-[#27364a] grid grid-cols-2 md:grid-cols-4 text-center text-sm">
         {[
           "Secure Payments",
           "Easy Returns",
@@ -120,7 +119,7 @@ export default function Footer() {
         ].map((text, i) => (
           <div
             key={i}
-            className="py-4 border-t border-gray-600 hover:bg-[#32465e] transition duration-300 cursor-default"
+            className="py-3 md:py-4 border-t border-gray-600 hover:bg-[#32465e] transition duration-300 cursor-default"
           >
             {text}
           </div>
@@ -128,7 +127,7 @@ export default function Footer() {
       </div>
 
       {/* COPYRIGHT */}
-      <div className="text-center text-sm py-4 border-t border-gray-600">
+      <div className="text-center text-xs md:text-sm py-4 border-t border-gray-600">
         © {new Date().getFullYear()} Zoya Enterprises — All Rights Reserved
       </div>
     </footer>
