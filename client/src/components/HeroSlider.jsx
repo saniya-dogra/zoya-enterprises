@@ -15,18 +15,21 @@ export default function HeroSlider() {
         className="w-full"
       >
 
-        {/* ================= KIDS & MIDDLE SCHOOL ================= */}
+        {/* ================= KIDS ================= */}
         <SwiperSlide>
-          <div className="h-[300px] bg-gradient-to-r from-blue-100 to-blue-200 flex items-center">
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center px-8 gap-10">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-3">
+          <div className="min-h-[420px] md:min-h-[300px] bg-gradient-to-r from-blue-100 to-blue-200 flex items-center">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center px-4 md:px-8 gap-5 md:gap-10">
+
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">
                   Kids & Middle School
                 </h2>
-                <p className="text-gray-700 mb-6 max-w-md">
+
+                <p className="text-sm md:text-base text-gray-700 mb-5 md:mb-6 max-w-md mx-auto md:mx-0">
                   Comfortable, durable & playful school uniforms designed for young learners.
                 </p>
-                <button className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700">
+
+                <button className="bg-blue-600 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-blue-700">
                   Shop Kids Wear
                 </button>
               </div>
@@ -34,7 +37,7 @@ export default function HeroSlider() {
               <img
                 src="https://media.istockphoto.com/id/1709220046/vector/group-of-scouts-boy-and-girl-with-backpack-holding-flag-hiking-in-nature.webp?a=1&b=1&s=612x612&w=0&k=20&c=0mKqlPq78sM5YUzG1cNjqyY-T1GWiTXkOwyO7K_LXu4="
                 alt="Kids school uniform"
-                className="h-56 w-full object-cover rounded-xl shadow-lg"
+                className="h-48 md:h-56 w-full object-cover rounded-xl shadow-lg"
               />
             </div>
           </div>
@@ -42,42 +45,47 @@ export default function HeroSlider() {
 
         {/* ================= HIGH SCHOOL ================= */}
         <SwiperSlide>
-          <div className="h-[300px] bg-gradient-to-r from-purple-100 to-purple-200 flex items-center">
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center px-8 gap-10">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-3">
+          <div className="min-h-[420px] md:min-h-[300px] bg-gradient-to-r from-purple-100 to-purple-200 flex items-center">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center px-4 md:px-8 gap-5 md:gap-10">
+
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">
                   High School
                 </h2>
-                <p className="text-gray-700 mb-6 max-w-md">
+
+                <p className="text-sm md:text-base text-gray-700 mb-5 md:mb-6 max-w-md mx-auto md:mx-0">
                   Smart, disciplined & modern uniforms that match growing confidence.
                 </p>
-                <button className="bg-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-700">
+
+                <button className="bg-purple-600 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-purple-700">
                   Explore Collection
                 </button>
               </div>
 
               <img
                 src="https://images.unsplash.com/photo-1529390079861-591de354faf5"
-
                 alt="High school students"
-                className="h-56 w-full object-cover rounded-xl shadow-lg"
+                className="h-48 md:h-56 w-full object-cover rounded-xl shadow-lg"
               />
             </div>
           </div>
         </SwiperSlide>
 
-        {/* ================= CORPORATE WEAR ================= */}
+        {/* ================= CORPORATE ================= */}
         <SwiperSlide>
-          <div className="h-[300px] bg-gradient-to-r from-orange-100 to-orange-200 flex items-center">
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center px-8 gap-10">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-3">
+          <div className="min-h-[420px] md:min-h-[300px] bg-gradient-to-r from-orange-100 to-orange-200 flex items-center">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center px-4 md:px-8 gap-5 md:gap-10">
+
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">
                   Corporate Wear
                 </h2>
-                <p className="text-gray-700 mb-6 max-w-md">
+
+                <p className="text-sm md:text-base text-gray-700 mb-5 md:mb-6 max-w-md mx-auto md:mx-0">
                   Professional uniforms for offices, institutions & corporate teams.
                 </p>
-                <button className="bg-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700">
+
+                <button className="bg-orange-600 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-orange-700">
                   View Collection
                 </button>
               </div>
@@ -85,7 +93,7 @@ export default function HeroSlider() {
               <img
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
                 alt="Corporate uniforms"
-                className="h-56 w-full object-cover rounded-xl shadow-lg"
+                className="h-48 md:h-56 w-full object-cover rounded-xl shadow-lg"
               />
             </div>
           </div>
@@ -93,16 +101,19 @@ export default function HeroSlider() {
 
         {/* ================= ACCESSORIES ================= */}
         <SwiperSlide>
-          <div className="h-[300px] bg-gradient-to-r from-emerald-100 to-emerald-200 flex items-center">
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center px-8 gap-10">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-3">
+          <div className="min-h-[420px] md:min-h-[300px] bg-gradient-to-r from-emerald-100 to-emerald-200 flex items-center">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center px-4 md:px-8 gap-5 md:gap-10">
+
+              <div className="text-center md:text-left">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">
                   Accessories
                 </h2>
-                <p className="text-gray-700 mb-6 max-w-md">
+
+                <p className="text-sm md:text-base text-gray-700 mb-5 md:mb-6 max-w-md mx-auto md:mx-0">
                   Belts, ties, socks & everyday school essentials to complete the look.
                 </p>
-                <button className="bg-emerald-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-emerald-700">
+
+                <button className="bg-emerald-600 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-full font-semibold hover:bg-emerald-700">
                   Shop Accessories
                 </button>
               </div>
@@ -110,7 +121,7 @@ export default function HeroSlider() {
               <img
                 src="https://media.istockphoto.com/id/483959744/vector/back-to-school.webp?a=1&b=1&s=612x612&w=0&k=20&c=I2srN46o3exgHVZtE0XMgqxZDfjunYUjYos5vbu7dHQ="
                 alt="School accessories"
-                className="h-56 w-full object-cover rounded-xl shadow-lg"
+                className="h-48 md:h-56 w-full object-cover rounded-xl shadow-lg"
               />
             </div>
           </div>
